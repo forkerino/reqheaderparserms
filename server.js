@@ -9,6 +9,10 @@ app.get('/api/whoami', function(req, res){
 	res.end(JSON.stringify({'ipaddress': ip, 'language': lang, 'OS': operatingsystem}));
 });
 
+app.get('/', function(req, res){
+	res.end('go to "https://reqheaderparserms.herokuapp.com/api/whoami" to test the service');
+});
+
 app.listen(process.env.PORT || 5000, function(){
 	console.log('listening on port ' + process.env.PORT || 5000);
 });
