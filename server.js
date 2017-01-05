@@ -4,12 +4,12 @@ let app = express();
 
 app.get('/api/whoami', function(req, res){
 	let lang = req.acceptsLanguages()[0];
-	let ip = req.ip;
+	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	let operatingsystem = req.headers['user-agent'].split('(')[1].split(')')[0];
 	res.end(JSON.stringify({'ipaddress': ip, 'language': lang, 'OS': operatingsystem}));
 });
 
-app.get('/', function(req, res){
+app.get('*', function(req, res){
 	res.end('go to "https://reqheaderparserms.herokuapp.com/api/whoami" to test the service');
 });
 
